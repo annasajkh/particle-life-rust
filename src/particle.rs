@@ -62,8 +62,7 @@ impl Particle {
         }
     }
 
-    pub fn add_force(&mut self, other: &mut Particle)
-	{
+    pub fn add_force(&mut self, other: &mut Particle) {
         let distance2 = self.position.distance_squared(other.position);
 
         if distance2 <= self.particle_class.max_radius * self.particle_class.max_radius && 
@@ -89,7 +88,7 @@ impl Particle {
             self.velocity.x *= FRICTION;
             self.velocity.y *= FRICTION;
         }
-	}
+    }
 
     pub fn update(&mut self) {
         let delta = get_frame_time();
