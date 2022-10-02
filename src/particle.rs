@@ -1,6 +1,6 @@
 use macroquad::{prelude::*, window};
 
-const RADIUS: f32 = 5.0;
+const RADIUS: f32 = 20.0;
 const FRICTION: f32 = 0.5;
 
 #[derive(Debug, Clone, Copy)]

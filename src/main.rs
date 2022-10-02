@@ -5,6 +5,8 @@ use std::f32::consts::PI;
 
 pub mod particle;
 
+const COUNT: usize = 200;
+const CLASSES_COUNT: usize = 8;
 
 fn window_conf() -> Conf {
     Conf {
@@ -32,10 +34,6 @@ fn init(particles: &mut [particle::Particle], particle_classes: &mut [particle::
 async fn main() {
     rand::srand(macroquad::miniquad::date::now() as _);
 
-    const COUNT: usize = 2000;
-    const CLASSES_COUNT: usize = 8;
-
-
     let mut particles = [Particle::new(Vec2::new(0.0,0.0), Vec2::new(0.0, 0.0), ParticleClass::new()); COUNT];
     let mut particle_classes = [ParticleClass::new(); CLASSES_COUNT];
 
@@ -57,10 +55,6 @@ async fn main() {
         }
 
         for i in 0..particles.len() {
-            particles[i].update();
-        }
-
-        for i in 0..particles.len() {
             let particle1 = &mut particles[i].clone();
 
             for j in 0..particles.len() {
@@ -70,6 +64,10 @@ async fn main() {
                     particle2.resolve_collision(particle1);
                 }
             }
+        }
+
+        for i in 0..particles.len() {
+            particles[i].update();
         }
 
         for i in 0..particles.len() {
